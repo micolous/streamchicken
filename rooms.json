@@ -1,0 +1,35 @@
+{
+  "tz": "Australia/Sydney",
+  "rooms": [
+    {
+      "id": "collab",
+      "name": "Collaborative",
+      "youtube": "XEVlyP4_11M"
+    },
+    {
+      "id": "greathall",
+      "name": "Great Hall",
+      "youtube": "vU8dCYocuyI"
+    },
+    {
+      "id": "large_pod_room_cb1104400",
+      "name": "Large POD",
+      "youtube": "DlJEt2KU33I"
+    },
+    {
+      "id": "guthrie",
+      "name": "Guthrie",
+      "youtube": "oDPCmmZifE8"
+    },
+    {
+      "id": "green",
+      "name": "Green",
+      "youtube": "7y1xJAVZxXg"
+    },
+    {
+      "id": "medium",
+      "name": "Medium",
+      "youtube": "L0jQz6jqQS0"
+    }
+  ]
+}
