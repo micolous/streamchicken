@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright 2018 Michael Farrell <micolous+git@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,11 +21,11 @@ function die {
 ROOT="/home/website2/tools"
 
 cd ${ROOT}
-wget https://veyepar.nextdayvideo.com/main/C/lca/S/lca2018.json
+wget -O /tmp/lca2018.json https://veyepar.nextdayvideo.com/main/C/lca/S/lca2018.json
 
 # Try to update the twitter
 python ${ROOT}/build_site_json.py \
-  -s ${ROOT}/lca2018.json \
+  -s /tmp/lca2018.json \
   -r ${ROOT}/rooms.json \
   -o /tmp/newschedule.json || die "Failed to update schedule"
 
