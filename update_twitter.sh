@@ -22,8 +22,8 @@ ROOT="/home/website2/tools"
 
 # Try to update the twitter
 python ${ROOT}/twitter_scraper.py \
-  -c ${ROOT}/.json \
-  -s ${ROOT}/rooms.json \
+  -c ${ROOT}/twitter_config.ini \
+  -s ${ROOT}/twitter_secrets.ini \
   -o /tmp/newtwitter.json || die "Failed to update twitter"
 
 cp /tmp/newtwitter.json /home/website2/html/dynamic/twitter.json
