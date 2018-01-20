@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ```
 */5 * 14-31 1 * /home/website2/tools/update_twitter.sh
-2 7-20 14-31 1 * /home/website2/tools/update_schedule.sh
+2 * 14-31 1 * /home/website2/tools/update_schedule.sh
 ```
 
 ### nginx
