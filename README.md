@@ -72,6 +72,24 @@ When setting up the room each day, you'll need to edit `rooms.json`, put in the 
 
 See `update_twitter.sh`.  This will take in two Twitter configuration files, `twitter_config.ini` and `twitter_secrets.ini`.
 
+`twitter.json` (the output) is a JSON object with:
+
+- `announce`: A Tweet with the current announcement (`who` and `ico` attributes are not supplied.)
+
+- `ts`: An ISO 8601 timestamp, with timezone, showing when the file was generated.  This is localised into local time.
+
+- `tweets`: An array of Tweet:
+  
+  - `who` (not included for `announce`): The Twitter username of the poster of the tweet.
+  
+  - `ts`: An ISO 8601 timestamp, with timezone, of when the tweet was posted.  This is localised into local time.
+  
+  - `ico` (not included for `announce`): The avatar of the Twitter user who wrote the tweet.
+  
+  - `txt`: The text content of the tweet.
+  
+  - `url`: A permalink to the tweet on twitter.com.
+
 #### `twitter_config.ini`
 
 This contains the non-private configuration for the Twitter scraper.
