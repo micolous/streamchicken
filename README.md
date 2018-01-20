@@ -66,6 +66,7 @@ See `update_schedule.sh`.  This will grab a schedule from veyepar, and the `room
   
   - `youtube`: A YouTube video ID for the live stream in the room.  eg: https://www.youtube.com/watch?v=dQw4w9WgXcQ becomes `dQw4w9WgXcQ`
 
+When setting up the room each day, you'll need to edit `rooms.json`, put in the day's YouTube stream ID, and then run `update_schedule.sh`.  That'll push the update out to the website.
 
 ### Twitter feed
 
