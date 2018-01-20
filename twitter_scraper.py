@@ -86,6 +86,7 @@ def build_twitter_json(config_f, secrets_f, output_f):
   tweets.reverse()
   
   output = {
+    'ts': local_tz.localize(datetime.now()).isoformat(),
     'announce': {
       'txt': announcements_user_status.text,
       'url': 'https://twitter.com/i/web/status/%s' % announcements_user_status.id_str,
