@@ -64,7 +64,7 @@ See `update_schedule.sh`.  This will grab a schedule from veyepar, and the `room
   
   - `name`: A human-friendly name for the room.  This can't be too long, so consider truncating to around 16 characters.
   
-  - `youtube`: A YouTube video ID for the live stream in the room.  eg: https://www.youtube.com/watch?v=dQw4w9WgXcQ becomes `Qw4w9WgXcQ`
+  - `youtube`: A YouTube video ID for the live stream in the room.  eg: https://www.youtube.com/watch?v=dQw4w9WgXcQ becomes `dQw4w9WgXcQ`
 
 
 ### Twitter feed
