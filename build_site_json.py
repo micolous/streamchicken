@@ -22,7 +22,7 @@ from argparse import ArgumentParser, FileType
 from datetime import datetime, timedelta
 from json import load, dump
 from isodate import parse_datetime, parse_duration
-from pytz import timezone
+from pytz import timezone, utc
 
 
 def build_site_json(schedule_f, rooms_f, output_f):
@@ -69,7 +69,7 @@ def build_site_json(schedule_f, rooms_f, output_f):
     room['events'].sort(key=lambda o: o['sta'])
   
   output = {
-    'ts': local_tz.localize(datetime.now()).isoformat(),
+    'ts': utc.localize(datetime.utcnow()).astimezone(local_tz).isoformat(),
     'rooms': rooms['rooms'],
   }
   
