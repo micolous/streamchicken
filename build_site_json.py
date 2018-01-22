@@ -23,6 +23,10 @@ from datetime import datetime, timedelta
 from json import load, dump
 from isodate import parse_datetime, parse_duration
 from pytz import timezone, utc
+from random import randint
+
+def generate_break_uid():
+  return str(randint(2**20, 2**21))
 
 
 def build_site_json(schedule_f, rooms_f, output_f):
@@ -30,6 +34,8 @@ def build_site_json(schedule_f, rooms_f, output_f):
   rooms = load(rooms_f)
   unknown_rooms = set()
   local_tz = timezone(rooms['tz'])
+  bump_in = parse_duration(rooms['bump_in'])
+  bump_out = parse_duration(rooms['bump_out'])
   
   rooms_entries = {}
   for room in rooms['rooms']:
@@ -52,8 +58,8 @@ def build_site_json(schedule_f, rooms_f, output_f):
 
     output_event = {
       'uid': event['conf_key'],  # unique ID
-      'sta': start.isoformat(),  # start
-      'end': end.isoformat(),    # end
+      'sta': start,              # start
+      'end': end,                # end
       'nam': event['name'],      # name / title
     }
     
@@ -67,6 +73,71 @@ def build_site_json(schedule_f, rooms_f, output_f):
 
   for room in rooms_entries.itervalues():
     room['events'].sort(key=lambda o: o['sta'])
+    ec = len(room['events'])
+
+    if ec == 0:
+      continue
+
+    for i in range(ec - 1):
+      prev_event = room['events'][i]
+      next_event = room['events'][i + 1]
+      if prev_event['end'] < next_event['sta']:
+        #print('found gap of %r' % (next_event['sta'] - prev_event['end']))
+        if prev_event['end'].date() == next_event['sta'].date():
+          # Same date with a gap -- insert a break
+          room['events'].append({
+            'uid': generate_break_uid(),
+            'sta': prev_event['end'],
+            'end': next_event['sta'],
+            'nam': rooms['break_text'],
+          })
+
+          # print('break added between %r and %r: %s - %s' % (
+          #   prev_event['nam'],
+          #   next_event['nam'],
+          #   prev_event['end'],
+          #   next_event['sta'],
+          # ))
+        else:
+          # Last event of the day, add an event at the end
+          room['events'].append({
+            'uid': generate_break_uid(),
+            'sta': prev_event['end'],
+            'end': prev_event['end'] + bump_out,
+            'nam': rooms['break_text'],
+          })
+
+          # and the start...
+          room['events'].append({
+            'uid': generate_break_uid(),
+            'sta': next_event['sta'] - bump_in,
+            'end': next_event['sta'],
+            'nam': rooms['break_text'],
+          })
+
+    # Add an event at the start
+    room['events'].append({
+      'uid': generate_break_uid(),
+      'sta': room['events'][0]['sta'] - bump_in,
+      'end': room['events'][0]['sta'],
+      'nam': rooms['break_text'],
+    })
+
+    # and an event of the day
+    room['events'].append({
+      'uid': generate_break_uid(),
+      'sta': room['events'][ec - 1]['end'],
+      'end': room['events'][ec - 1]['end'] + bump_out,
+      'nam': rooms['break_text'],
+    })
+
+    # Sort again
+    room['events'].sort(key=lambda o: o['sta'])
+
+    # And convert to proper timestamps
+    for event in room['events']:
+      event['sta'] = event['sta'].isoformat()
+      event['end'] = event['end'].isoformat()
   
   output = {
     'ts': utc.localize(datetime.utcnow()).astimezone(local_tz).isoformat(),

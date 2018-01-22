@@ -1,5 +1,8 @@
 {
   "tz": "Australia/Sydney",
+  "break_text": "No event in this room",
+  "bump_in": "PT15M",
+  "bump_out": "PT1H",
   "rooms": [
     {
       "id": "collab",
