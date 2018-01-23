@@ -1,38 +1,38 @@
 {
   "tz": "Australia/Sydney",
-  "break_text": "No event in this room",
+  "break_text": "Break",
   "bump_in": "PT15M",
   "bump_out": "PT1H",
   "rooms": [
     {
       "id": "collab",
       "name": "Collaborative",
-      "youtube": "XEVlyP4_11M"
+      "youtube": "UK5f6KZMQZo"
     },
     {
       "id": "greathall",
       "name": "Great Hall",
-      "youtube": "vU8dCYocuyI"
+      "youtube": "-7ob4iusIzw"
     },
     {
       "id": "largepod",
       "name": "Large POD",
-      "youtube": "DlJEt2KU33I"
+      "youtube": "cqeOTgY9Al4"
     },
     {
       "id": "guthrie",
       "name": "Guthrie",
-      "youtube": "oDPCmmZifE8"
+      "youtube": "CgW1TVsUFXs"
     },
     {
       "id": "green",
       "name": "Green",
-      "youtube": "7y1xJAVZxXg"
+      "youtube": "DaVLdlNUc1A"
     },
     {
       "id": "medium",
       "name": "Medium",
-      "youtube": "L0jQz6jqQS0"
+      "youtube": "lpkwuA6jlmk"
     }
   ]
 }
